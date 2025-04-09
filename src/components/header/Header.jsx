@@ -11,14 +11,14 @@ const Header = () => {
         <Image
           src={flare}
           alt="Purple Flare"
-          className="w-full h-full object-cover blur-[120px] opacity-40"
+          className="w-full h-full object-cover blur-[120px] opacity-50"
         />
       </div>
 
       {/* Content */}
       <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-10 max-w-7xl w-full">
         {/* Globe */}
-        <div className="w-64 h-72 md:w-96 md:h-96 flex-shrink-0">
+        <div className="w-64 h-64 md:w-96 md:h-96 flex-shrink-0">
           <Image
             src={globe_new}
             alt="Rotating Globe"
@@ -44,5 +44,6 @@ const Header = () => {
     </section>
   );
 };
+
 
 export default Header;
