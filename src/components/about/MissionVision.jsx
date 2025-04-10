@@ -1,3 +1,9 @@
+const coreValues = [{
+    title: "Providing Value",
+    description: "Digital Flex offers significant value by allowing businesses to focus on operations while we manage their online presence. Through our expert business profile management, we ensure your brand image is professional and consistent, while your reputation remains untarnished. Our tailored solutions, backed by data-driven results, ensure that your business gains visibility and credibility."
+}
+];
+
 const MissionVisionValues = () => {
     return (
         <section className="bg-white py-20 px-6 md:px-12">
@@ -26,13 +32,11 @@ const MissionVisionValues = () => {
 
                     {/* Values */}
                     <div className="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition">
-                        <h3 className="text-2xl font-semibold text-gray-700 mb-3">Our Core Values</h3>
+                        <h3 className="text-2xl font-semibold text-gray-700 mb-3">
+                            {coreValues[0].title}
+                        </h3>
                         <ul className="list-disc pl-5 text-gray-600 space-y-1">
-                            <li>Innovation & Creativity</li>
-                            <li>Client-Centric Approach</li>
-                            <li>Integrity & Transparency</li>
-                            <li>Data-Driven Results</li>
-                            <li>Long-Term Partnerships</li>
+                            <p>{coreValues[0].description}</p>
                         </ul>
                     </div>
                 </div>

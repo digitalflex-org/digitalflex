@@ -22,7 +22,7 @@ const FlexValues = () => {
             icon: <Award className="w-12 h-12 text-yellow-500" />,
         },
         {
-            title: "Experience",
+            title: "Xperience",
             description:
                 "We prioritize providing an unparalleled experience for our clients. Every interaction, strategy, and solution is crafted with care to ensure satisfaction, long-term success, and a smooth, seamless journey.",
             icon: <Star className="w-12 h-12 text-red-500" />,
