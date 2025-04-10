@@ -15,7 +15,7 @@ const Nav = () => {
     ];
 
     return (
-        <nav className="bg-[#1d3c6a] text-white sticky top-0 z-50 shadow-md">
+        <nav className="bg-[#1d3c6a] text-white sticky top-0 z-40 shadow-md">
             <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
                 {/* company Logo & Name */}
                 <Link href="/" className="flex items-center gap-2">
