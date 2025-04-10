@@ -44,7 +44,7 @@ export default function Footer() {
                         <a href="#" className="hover:text-[#ff6f3c] flex"><MapPin size={20} /> <span className='ml-2'><h3 className='font-semibold'>Head quaters</h3>
                             Singapore
                             540 Sims Avenue, Sims Avenue Centre, #03-05 S387603 </span></a>
-                        <a href="#" className="hover:text-[#ff6f3c] flex ml-4"><span className='ml-2'><h3 className='font-semibold'>Branch</h3>
+                        <a href="#" className="hover:text-[#ff6f3c] flex ml-4"><span className='ml-2'><h3 className='font-semibold'>Branch Office</h3>
                            Africa | US </span></a>
                     </div>
                     <div className="flex gap-4 mb-4">
