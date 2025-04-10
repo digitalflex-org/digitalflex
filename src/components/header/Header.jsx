@@ -18,11 +18,11 @@ const Header = () => {
       {/* Content */}
       <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-10 max-w-7xl w-full">
         {/* Globe */}
-        <div className="w-64 h-64 md:w-96 md:h-96 flex-shrink-0">
+        <div className="w-64 h-64 md:w-96 md:h-[720px] flex-shrink-0">
           <Image
             src={globe_new}
             alt="Rotating Globe"
-            className="w-full h-full object-contain rotate-globe"
+            className="w-[100%] h-full object-contain rotate-globe"
           />
         </div>
 
