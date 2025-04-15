@@ -4,9 +4,7 @@ export const metadata = {
     title: "Digital Flex | Pricing",
     description: "Explore Digital Flex's transparent pricing for digital marketing,Google Business Profile Management, web hosting, SEO, PPC & more. Affordable plans tailored for businesses of all sizes. ",
     keywords: "digital marketing pricing, online marketing services, SEO pricing, PPC packages, Google Business Profile pricing, web hosting plans, email marketing cost, affordable marketing services, local SEO pricing, Digital Flex pricing"
-}
-
-
+};
 
 const PricingPage = () => {
     const plans = [
@@ -16,7 +14,7 @@ const PricingPage = () => {
             price: "$189",
             features: ["Profile Optimization", "Review Management", "Posts & Updates", "Insights & Analytics"],
             highlighted: false,
-            paymentLink: process.env.NEXT_PUBLIC_ESSENTIAL_PLAN_PAYMENT_LINK
+            paymentLink: process.env.NEXT_PUBLIC_ESSENTIAL_PLAN_PAYMENT_LINK || null
         },
         {
             name: "Growth",
@@ -24,7 +22,7 @@ const PricingPage = () => {
             price: "$489",
             features: ["Profile Optimization", "Review Management", "Posts & Updates", "Insights & Analytics", "Q&A Management", "Photos & Video Updates", "Business Attributes", "Booking & Appointment", "Products & Service Updates"],
             highlighted: true,
-            paymentLink: process.env.NEXT_PUBLIC_GROWTH_PLAN_PAYMENT_LINK
+            paymentLink: process.env.NEXT_PUBLIC_GROWTH_PLAN_PAYMENT_LINK || null
         },
         {
             name: "Premium",
@@ -32,7 +30,7 @@ const PricingPage = () => {
             price: "$989",
             features: ["Profile Optimization", "Review Management", "Posts & Updates", "Insights & Analytics", "Q&A Management", "Photos & Video Updates", "Business Attributes", "Booking & Appointment", "Product & Services Updates", "Special Offers & Discounts."],
             highlighted: false,
-            paymentLink: process.env.NEXT_PUBLIC_PREMIUM_PLAN_PAYMENT_LINK
+            paymentLink: process.env.NEXT_PUBLIC_PREMIUM_PLAN_PAYMENT_LINK || null
         },
     ];
 
@@ -48,7 +46,7 @@ const PricingPage = () => {
                     {plans.map((plan, idx) => (
                         <div
                             key={idx}
-                            className={`rounded-2xl p-8 shadow-xl border transition-transform duration-300 transform hover:scale-105 ease-in-out ${plan.highlighted
+                            className={`relative rounded-2xl p-8 shadow-xl border transition-transform duration-300 transform hover:scale-105 ease-in-out ${plan.highlighted
                                 ? "bg-[#ff6f3c] text-white border-[#f29c11]"
                                 : "bg-white text-[#333333] border-[#f4f4f4]"
                                 }`}
@@ -60,18 +58,14 @@ const PricingPage = () => {
                             )}
                             <h3 className="text-2xl font-semibold mb-4">{plan.name}</h3>
 
-                            <p
-                                className={`text-lg mb-6 ${plan.highlighted ? "text-white" : "text-[#004e89]"
-                                    }`}
-                            >
+                            <p className={`text-lg mb-6 ${plan.highlighted ? "text-white" : "text-[#004e89]"}`}>
                                 {plan.description}
                             </p>
-                            <p
-                                className={`text-4xl font-bold mb-6 ${plan.highlighted ? "text-white" : "text-[#004e89]"
-                                    }`}
-                            >
+
+                            <p className={`text-4xl font-bold mb-6 ${plan.highlighted ? "text-white" : "text-[#004e89]"}`}>
                                 {plan.price}
                             </p>
+
                             <ul className="space-y-3 text-sm mb-8">
                                 {plan.features.map((feature, i) => (
                                     <li key={i} className="flex items-center justify-center md:justify-start gap-2">
@@ -80,14 +74,26 @@ const PricingPage = () => {
                                     </li>
                                 ))}
                             </ul>
-                            <button
-                                className={`w-full py-3 rounded-full font-semibold transition-all duration-300 ${plan.highlighted
-                                    ? "bg-[#d87d23] hover:bg-[#f29c11] shadow-lg"
-                                    : "bg-[#004e89] text-white hover:bg-[#1d3c6a] shadow-md"
-                                    }`}
-                            >
-                                <Link href={plan.paymentLink}> {plan.highlighted ? "Get Started" : "Select Plan"}</Link>
-                            </button>
+
+                            {plan.paymentLink ? (
+                                <Link href={plan.paymentLink} className="block">
+                                    <button
+                                        className={`w-full py-3 rounded-full font-semibold transition-all duration-300 ${plan.highlighted
+                                            ? "bg-[#d87d23] hover:bg-[#f29c11] shadow-lg"
+                                            : "bg-[#004e89] text-white hover:bg-[#1d3c6a] shadow-md"
+                                            }`}
+                                    >
+                                        {plan.highlighted ? "Get Started" : "Select Plan"}
+                                    </button>
+                                </Link>
+                            ) : (
+                                <button
+                                    disabled
+                                    className="w-full py-3 rounded-full font-semibold bg-gray-400 text-white cursor-not-allowed opacity-70"
+                                >
+                                    Coming Soon
+                                </button>
+                            )}
                         </div>
                     ))}
                 </div>
@@ -97,5 +103,3 @@ const PricingPage = () => {
 };
 
 export default PricingPage;
-
-
