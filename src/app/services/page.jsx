@@ -1,6 +1,6 @@
-import FAQSection from '@/components/services/faq';
-import PaymentSection from '@/components/services/paymentProcess';
-import ElevateYourBrandSection from '@/components/services/valueProp';
+import FAQSection from '../../components/services/faq';
+import PaymentSection from '../../components/services/paymentProcess';
+import ElevateYourBrandSection from '../../components/services/valueProp';
 import Image from 'next/image';  // Optional, for images if needed
 
 const services = [

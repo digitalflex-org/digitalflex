@@ -11,19 +11,21 @@ const Nav = () => {
         { name: 'Home', href: '/' },
         { name: 'About', href: '/about' },
         { name: 'Services', href: '/services' },
+        { name: 'Pricing', href: '/pricing' },
+        { name: 'Careers', href: '/careers' },
         { name: 'Contact', href: '/contact' },
     ];
 
     return (
         <nav className="bg-[#1d3c6a] text-white sticky top-0 z-40 shadow-md">
-            <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div className="max-w-7xl max-h-[85px] mx-auto px-4 py-4 flex justify-between items-center">
                 {/* company Logo & Name */}
                 <Link href="/" className="flex items-center gap-2">
                     <Image
                         src="/images/Digital_Flex_Logo.png"
                         alt="Digital Flex Logo"
-                        width={60}
-                        height={60}
+                        width={80}
+                        height={30}
                         className="object-contain"
                     />
                     <span className="text-2xl font-bold">Digital Flex</span>

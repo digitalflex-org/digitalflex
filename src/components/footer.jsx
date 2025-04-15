@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Facebook, Twitter, Linkedin, Phone, Mail, Clock, MapPin} from 'lucide-react';
+import { Facebook, Twitter, Linkedin, Phone, Mail, Clock, MapPin } from 'lucide-react';
 
 export default function Footer() {
     return (
@@ -45,7 +45,7 @@ export default function Footer() {
                             Singapore
                             540 Sims Avenue, Sims Avenue Centre, #03-05 S387603 </span></a>
                         <a href="#" className="hover:text-[#ff6f3c] flex ml-4"><span className='ml-2'><h3 className='font-semibold'>Branch Office</h3>
-                           Africa | US </span></a>
+                            Africa | US </span></a>
                     </div>
                     <div className="flex gap-4 mb-4">
                         <a href="#" className="hover:text-[#ff6f3c]"><Facebook size={20} /></a>

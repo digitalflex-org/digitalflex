@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Norh from '@public/images/norh_sharif.png';
+import Norh from '../../../public/images/norh_sharif.png';
 
 const foundersBio = [
     {

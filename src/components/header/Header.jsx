@@ -1,6 +1,6 @@
 import Image from "next/image";
-import globe_new from '@/assets/globe.png';
-import flare from '@/assets/Purple-Lens-Flare.png';
+import globe_new from '../../assets/globe.png';
+import flare from '../../assets/Purple-Lens-Flare.png';
 import './header.css';
 
 const Header = () => {

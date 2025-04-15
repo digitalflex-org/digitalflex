@@ -1,9 +1,9 @@
 import Image from "next/image";
-import about from "@/assets/aboutus.jpg";
-import MissionVisionValues from "@/components/about/MissionVision";
-import MeetTheFounder from "@/components/about/MeetTheFounder";
-import FlexValues from "@/components/about/flexValues";
-import TestimonialSlider from "@/components/utilities/testimonials/testimonials";
+import about from "../../assets/aboutus.jpg";
+import MissionVisionValues from "../../components/about/MissionVision";
+import MeetTheFounder from "../../components/about/MeetTheFounder";
+import FlexValues from "../../components/about/flexValues";
+import TestimonialSlider from "../../components/utilities/testimonials/testimonials";
 
 
 
