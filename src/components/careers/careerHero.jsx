@@ -1,5 +1,5 @@
 
-export default function CareersHero() {
+export function CareersHero() {
     return (
         <section className="bg-[#004e89] text-white py-20 px-6 md:px-12 text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Join Our Team</h1>

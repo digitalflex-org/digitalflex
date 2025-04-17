@@ -1,4 +1,4 @@
-export default function WhyWorkWithUs() {
+export function WhyWorkWithUs() {
     const benefits = [
         {
             title: "Innovative Culture",
