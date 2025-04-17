@@ -12,7 +12,7 @@ export function OpenPositions() {
                 const res = await fetch("https://www.arbeitnow.com/api/job-board-api");
                 const data = await res.json();
                 setJobs(data.data);
-                console.log("Jobs fetched:", data);
+                // console.log("Jobs fetched:", data);
             } catch (error)
             {
                 console.error("Error fetching jobs:", error);
@@ -45,6 +45,7 @@ export function OpenPositions() {
                             <Link
                                 href={`/careers/${job.slug}`}
                                 prefetch={false}
+                                className="bg-[#004e89] border-2 rounded-lg p-3 text-white "
                             // onClick={() => console.log(`Navigating to job ID: ${job.id}`)}
                             >
                                 Apply Now
