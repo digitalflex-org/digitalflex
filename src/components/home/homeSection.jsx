@@ -1,3 +1,4 @@
+import TestimonialSlider from '../../components/utilities/testimonials/testimonials';
 import './homeSection.css';
 
 export const metadata = {
@@ -31,6 +32,9 @@ const HomeSection = () => {
                         ))}
                     </div>
                 </div>
+            </div>
+            <div className='pt-6'>
+                <TestimonialSlider />
             </div>
         </div>
     );
