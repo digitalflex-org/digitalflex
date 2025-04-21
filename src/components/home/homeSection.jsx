@@ -1,5 +1,6 @@
 import TestimonialSlider from '../../components/utilities/testimonials/testimonials';
 import './homeSection.css';
+import TailoredSolutionsSection from './tailoredService';
 
 export const metadata = {
     title: "Digital Flex | Home",
@@ -32,6 +33,9 @@ const HomeSection = () => {
                         ))}
                     </div>
                 </div>
+            </div>
+            <div className='mt-4'>
+                <TailoredSolutionsSection />
             </div>
             <div className='pt-6'>
                 <TestimonialSlider />
