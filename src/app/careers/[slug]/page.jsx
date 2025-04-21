@@ -8,14 +8,17 @@ export default async function Page({ params }) {
   if (!job) return <div>Job not found</div>;
 
   return (
-    <div className="p-6 flex bg-gray-50 text-black">
-      <div className=" px-6 mx-6">
-        <CareerDetailClient job={job} />
-      </div>
-      <div className="w-2/3 flex flex-col">
-        <h1 className="text-3xl font-bold mb-4">{job.title}</h1>
+    <div className="w-full p-4 md:p-6 flex flex-col md:flex-row gap-6 bg-gray-50 text-black">
+      {/* Job Details Section */}
+      <div className="w-full md:w-2/3">
+        <h1 className="text-2xl md:text-3xl font-bold mb-4">{job.title}</h1>
         <p className="mb-2">📍 {job.location}</p>
-        <p>{job.description}</p>
+        <p className="text-sm md:text-base">{job.description}</p>
+      </div>
+
+      {/* Sidebar or Additional Info Section */}
+      <div className="w-full md:w-1/3 h-auto md:h-[300px]">
+        <CareerDetailClient job={job} />
       </div>
     </div>
   );
