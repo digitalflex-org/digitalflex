@@ -8,7 +8,7 @@ export default async function Page({ params }) {
   if (!job) return <div>Job not found</div>;
 
   return (
-    <div className="p-6 flex bg-foreground text-background">
+    <div className="p-6 flex bg-gray-50 text-black">
       <div className=" px-6 mx-6">
         <CareerDetailClient job={job} />
       </div>

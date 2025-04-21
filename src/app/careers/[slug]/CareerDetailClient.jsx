@@ -27,7 +27,7 @@ export default function CareerDetailClient({ job }) {
     };
 
     return (
-        <div className="max-w-2xl mx-auto p-6">
+        <div className="w-full md:max-w-2xl mx-auto p-6 bg-gray-50">
             <form onSubmit={handleSubmit} className="space-y-4 flex flex-col min-h-[100vh]">
 
                 <label className="text-sm font-bold mb-2">
