@@ -20,7 +20,7 @@ const HomeSection = () => {
             <div className="">
                 <h2 className="text-header text-center">Why choose us?</h2>
                 <div className=''>
-                    <p className="text-background p-5 text-center">At Digital Flex we specialize in enhancing your online visibility through meticulous Google Business Profile management and innovative digital marketing strategies. Our customized solutions aim to engage customers, improve brand perception, and ultimately expand your business reach in today's competitive landscape.</p>
+                    <p className="text-black p-5 text-center">At Digital Flex we specialize in enhancing your online visibility through meticulous Google Business Profile management and innovative digital marketing strategies. Our customized solutions aim to engage customers, improve brand perception, and ultimately expand your business reach in today's competitive landscape.</p>
                 </div>
                 <div className='w-full'>
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-4 justify-center'>
