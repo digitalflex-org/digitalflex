@@ -17,7 +17,7 @@ export default async function Page({ params }) {
       </div>
 
       {/* Sidebar or Additional Info Section */}
-      <div className="w-full md:w-1/3 h-auto md:h-[300px]">
+      <div className="w-full md:w-1/3 h-auto">
         <CareerDetailClient job={job} />
       </div>
     </div>
