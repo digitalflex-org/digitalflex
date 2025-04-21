@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Facebook, Twitter, Linkedin, Phone, Mail, Clock, MapPin } from 'lucide-react';
+import { Facebook, Twitter, Linkedin, Phone, Mail, Clock, MapPin, Instagram, Music } from 'lucide-react';
 
 export default function Footer() {
     return (
@@ -48,9 +48,26 @@ export default function Footer() {
                             Africa | US </span></a>
                     </div>
                     <div className="flex gap-4 mb-4">
-                        <a href="#" className="hover:text-[#ff6f3c]"><Facebook size={20} /></a>
-                        <a href="#" className="hover:text-[#ff6f3c]"><Twitter size={20} /></a>
-                        <a href="#" className="hover:text-[#ff6f3c]"><Linkedin size={20} /></a>
+                        <Link href="https://web.facebook.com/people/Digital-Flex/61571599517217/" className="hover:text-[#ff6f3c]"><Facebook size={20} /></Link>
+                        <Link href="https://x.com/d_gitalflex" className="hover:text-[#ff6f3c]"><Twitter size={20} /></Link>
+                        <Link href="#" className="hover:text-[#ff6f3c]"><Linkedin size={20} /></Link>
+                        <Link href="https://www.instagram.com/d_gitalflex/#" className="hover:text-[#ff6f3c]"><Instagram size={20} /></Link>
+                        <Link
+                            href="https://www.tiktok.com/@digitalflex"
+                            className="hover:text-[#ff6f3c]"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 448 512"
+                                width="20"
+                                height="20"
+                                fill="currentColor"
+                            >
+                                <path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z" />
+                            </svg>
+                        </Link>
                     </div>
                     {/*<p className="text-sm text-gray-300">support@digitalflex.org</p> */}
                 </div>
