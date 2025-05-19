@@ -79,18 +79,15 @@ const OnboardingMaterials = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get('category');
 
-    return (
-      <div className='bg-gray-50'>
-    <div className="container mx-auto py-12 px-8">
-          <h1 className="text-3xl font-bold text-blue-900 mb-8 uppercase">{query}</h1>
-      <Suspense fallback={<Spinner />}>
-        <OnboardingMaterialsContent query={query} />
-      </Suspense>
-            </div>
-            <div className='justify-center align-middle text-center'>
-                <button className='text-black uppercase font-semibold bg-[#ffeb3b] w-[150px] p-2 rounded-lg mb-6'>completed</button>
-                </div>
-            </div>
+  return (
+    <div className="bg-gray-50 min-h-screen">
+      <div className="container mx-auto py-12 px-8">
+        <h1 className="text-3xl font-bold text-blue-900 mb-8 uppercase">{query}</h1>
+        <Suspense fallback={<Spinner />}>
+          <OnboardingMaterialsContent query={query} />
+        </Suspense>
+      </div>
+    </div>
   );
 };
 
