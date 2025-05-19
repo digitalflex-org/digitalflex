@@ -1,40 +1,39 @@
 'use client';
-import React, { useEffect, useState, Suspense, useReducer } from 'react';
-import { useSearchParams, useParams, redirect } from 'next/navigation';
+import React, { useEffect, useState, Suspense } from 'react';
+import { useSearchParams, redirect } from 'next/navigation';
 import { api } from '../../../lib/axios';
 import Spinner from '../../../components/spinner';
 import { getDataFromLocalStorage } from 'components/utilities/token';
 
-
 const OnboardingMaterialsContent = ({ query }) => {
   const [materials, setMaterials] = useState([]);
-  const [error, setError] = useState<string | null>(null);
-  const params = useParams();
+  const [error, setError] = useState(null);
 
-    const handleMaterialCompletion = async (materialId, userId) =>{
-      try {
-        const token = getDataFromLocalStorage('auth_token');
-        if (!token) {
-          throw new Error('user not authenticated')
-          //i can apply toastr later for displying notifications once im done with the main tasks
-          redirect('/') //this shall be to the applicant login page currently using the home for test case
-          return;
-        }
-        const completedMaterial = await api.patch(`/onboarding/progress/${materialId}`)
-            
-        } catch (error) {
-            console.error('Error marking material as completed:', error);
-            
-        }
+  const handleMaterialCompletion = async (materialId) => {
+    try
+    {
+      const token = getDataFromLocalStorage('auth_token');
+      if (!token)
+      {
+        redirect('/');
+        return;
+      }
+
+      await api.patch(`/onboarding/progress/${materialId}`);
+    } catch (err)
+    {
+      console.error('Error marking material as completed:', err);
     }
-    
+  };
+
   useEffect(() => {
     const fetchMaterials = async () => {
-      try {
-          const response = await api.get(`/onboarding/random-quest?category=${query}`);
-        //   console.log(response.data.categoryBoardingMaterialsawait)
-        setMaterials(response.data.categoryBoardingMaterialsawait || []);
-      } catch (err) {
+      try
+      {
+        const response = await api.get(`/onboarding/random-quest?category=${query}`);
+        setMaterials(response.data.categoryBoardingMaterials || []);
+      } catch (err)
+      {
         setError('Failed to fetch materials.');
       }
     };
@@ -44,9 +43,8 @@ const OnboardingMaterialsContent = ({ query }) => {
 
   if (error) return <p className="text-red-500">{error}</p>;
 
-    return (
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    
+  return (
+    <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {materials.length > 0 ? (
         materials.map((material) => (
           <div key={material._id} className="bg-gray-100 p-6 rounded-lg shadow-lg">
@@ -54,24 +52,28 @@ const OnboardingMaterialsContent = ({ query }) => {
             <p className="text-gray-700 mb-4">{material.taskDescription}</p>
             {material.documentUrl && (
               <a href={material.documentUrl} target="_blank" className="text-blue-600 hover:underline">
-                Access material
+                Access Material
               </a>
             )}
-            {material.videoUrl ? (
+            {material.videoUrl && (
               <a href={material.videoUrl} target="_blank" className="text-blue-600 hover:underline ml-4">
                 Watch Video
               </a>
-                ) : ''}
-                <div className=' mt-4 '>
-                    <button className=' bg-[#ffeb3b]'>completed</button>
-                </div>
-            
+            )}
+            <div className="mt-4">
+              <button
+                className="bg-[#ffeb3b] px-4 py-2 rounded-lg"
+                onClick={() => handleMaterialCompletion(material._id)}
+              >
+                Mark as Completed
+              </button>
+            </div>
           </div>
         ))
       ) : (
-        <p className="text-gray-500">No materials for the selected category at the moment move to the next category..</p>
+        <p className="text-gray-500">No materials available for the selected category.</p>
       )}
-            </section>
+    </section>
   );
 };
 
