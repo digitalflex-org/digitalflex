@@ -3,7 +3,8 @@ import React, { useEffect, useState, Suspense, useReducer } from 'react';
 import { useSearchParams, useParams, redirect } from 'next/navigation';
 import { api } from '../../../lib/axios';
 import Spinner from '../../../components/spinner';
-import { getDataFromLocalStorage } from '../../../components/utilities/token';
+import { getDataFromLocalStorage } from 'components/utilities/token';
+
 
 const OnboardingMaterialsContent = ({ query }) => {
   const [materials, setMaterials] = useState([]);
