@@ -1,24 +1,21 @@
 'use client';
 import React, { useEffect, useState, Suspense } from 'react';
-import { useSearchParams, redirect } from 'next/navigation';
+import { useSearchParams, redirect, useRouter } from 'next/navigation';
 import { api } from '../../../lib/axios';
 import Spinner from '../../../components/spinner';
-import { getDataFromLocalStorage } from 'components/utilities/token';
+import { toast } from 'react-toastify';
+import { useAuthGuard } from 'components/utilities/hooks/useAuthGuard';
 
 const OnboardingMaterialsContent = ({ query }) => {
   const [materials, setMaterials] = useState([]);
   const [error, setError] = useState(null);
 
+  const checking = useAuthGuard('applicant');
+  const router = useRouter();
+
   const handleMaterialCompletion = async (materialId) => {
     try
     {
-      const token = getDataFromLocalStorage('auth_token');
-      if (!token)
-      {
-        redirect('/');
-        return;
-      }
-
       await api.patch(`/onboarding/progress/${materialId}`);
     } catch (err)
     {
@@ -30,17 +27,29 @@ const OnboardingMaterialsContent = ({ query }) => {
     const fetchMaterials = async () => {
       try
       {
-        const response = await api.get(`/onboarding/random-quest?category=${query}`);
-        setMaterials(response.data.categoryBoardingMaterials || []);
-      } catch (err)
+      const response = await api.get(`/onboarding/random-quest?category=${query}`);
+        console.log('Materials full response:', response.data);
+        const materials = response.data.categoryBoardingMaterials;
+        if (Array.isArray(materials))
+        {
+          setMaterials(materials);
+        } else
+        {
+          console.warn('Expected array but got:', materials);
+          setMaterials([]);
+        }
+      } catch (error)
       {
+        console.error('Fetch error:', error);
         setError('Failed to fetch materials.');
       }
     };
 
-    if (query) fetchMaterials();
-  }, [query]);
+    if (!checking && query) fetchMaterials();
+  }, [query, checking]);
+  
 
+  if (checking) return <Spinner />;
   if (error) return <p className="text-red-500">{error}</p>;
 
   return (
