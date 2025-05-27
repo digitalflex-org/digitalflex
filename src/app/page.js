@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Header from "@/components/header/Header.jsx";
-import HomeSection from "@/components/home/homeSection.jsx";
+import Header from "../components/header/Header.jsx";
+import HomeSection from "../components/home/homeSection.jsx";
 
 
 
