@@ -26,7 +26,7 @@ const MeetTheFounder = () => {
                         className="rounded-2xl shadow-lg object-cover"
                     />
                     <div className=''>
-                        <h2 className="text-xl text-background font-semibold mt-4 text-center md:text-center">{foundersBio[0].name}</h2>
+                        <h2 className="text-xl text-gray-600 font-semibold mt-4 text-center md:text-center">{foundersBio[0].name}</h2>
                         <p className="text-gray-600 text-center md:text-center">{foundersBio[0].title}</p>
                     </div>
                 </div>
