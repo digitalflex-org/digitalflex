@@ -1,3 +1,8 @@
+'use client';
+
+import { motion, useInView } from 'framer-motion';
+
+
 import Image from 'next/image';
 import Norh from '../../../public/images/norh_sharif.png';
 
@@ -15,37 +20,46 @@ const foundersBio = [
 const MeetTheFounder = () => {
     return (
         <section className="bg-gray-100 py-20 px-6 md:px-12">
-            <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10">
-                {/* Founder Image */}
-                <div className="w-full md:w-1/2">
-                    <Image
-                        src={Norh}
-                        alt="Norh Sharif - Founder of Digital Flex"
-                        width={500}
-                        height={500}
-                        className="rounded-2xl shadow-lg object-cover"
-                    />
-                    <div className=''>
-                        <h2 className="text-xl text-gray-600 font-semibold mt-4 text-center md:text-center">{foundersBio[0].name}</h2>
-                        <p className="text-gray-600 text-center md:text-center">{foundersBio[0].title}</p>
+            <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="mt-4"
+            >
+                <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10">
+                    {/* Founder Image */}
+                    <div className="w-full md:w-1/2">
+                        <Image
+                            src={Norh}
+                            alt="Norh Sharif - Founder of Digital Flex"
+                            width={500}
+                            height={500}
+                            className="rounded-2xl shadow-lg object-cover"
+                        />
+                        <div className=''>
+                            <h2 className="text-xl text-gray-600 font-semibold mt-4 text-center md:text-center">{foundersBio[0].name}</h2>
+                            <p className="text-gray-600 text-center md:text-center">{foundersBio[0].title}</p>
+                        </div>
                     </div>
-                </div>
 
-                {/* Founder Bio */}
-                <div className="w-full md:w-1/2">
-                    <h2 className="text-4xl font-bold text-gray-800 mb-4">Meet the Founder</h2>
-                    <div>
-                        {foundersBio.map((founder, index) => (
-                            <article key={index}>
-                                <p className="text-gray-600 mb-4">
-                                    <span className="font-semibold text-gray-800">{founder.name}</span>, {founder.description}
-                                </p>
-                                <p className="text-gray-600 italic">{founder.personalNote}</p>
-                            </article>
-                        ))}
+                    {/* Founder Bio */}
+                    <div className="w-full md:w-1/2">
+
+                        <h2 className="text-4xl font-bold text-gray-800 mb-4">Meet the Founder</h2>
+                        <div>
+                            {foundersBio.map((founder, index) => (
+                                <article key={index}>
+                                    <p className="text-gray-600 mb-4">
+                                        <span className="font-semibold text-gray-800">{founder.name}</span>, {founder.description}
+                                    </p>
+                                    <p className="text-gray-600 italic">{founder.personalNote}</p>
+                                </article>
+                            ))}
+                        </div>
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </section>
     );
 };
