@@ -1,33 +1,31 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { api } from 'lib/axios';
+import { useRouter, usePathname } from 'next/navigation';
+import { api } from '@/lib/axios';
+import { toast } from 'react-toastify';
+import { useAuth } from '@/contexts/authContext';
 
-export const useAuthGuard = (role, redirect = '/auth?tab=signin') => {
+export const useAuthGuard = (allowedRoles = [], redirect = '/auth?tab=signin') => {
+    const { user, loading } = useAuth();
     const [checking, setChecking] = useState(true);
     const router = useRouter();
+    const pathname = usePathname();
 
     useEffect(() => {
-        const validateUser = async () => {
-            try
+        if (!loading)
+        {
+            if (user && allowedRoles.includes(user.role))
             {
-                const res = await api.get('/auth/me');
-                const user = res.data.user;
-
-                if (role && user.role !== role)
-                {
-                    router.replace(redirect);
-                } else
-                {
-                    setChecking(false);
-                }
-            } catch (error)
+                setChecking(false);
+            } else
             {
-                router.replace(redirect);
+                const encodedPath = encodeURIComponent(pathname);
+                toast.warn("You're not authorized to perform this action!");
+                const separator = redirect.includes('?') ? '&' : '?';
+                router.replace(`${redirect}${separator}callbackUrl=${encodedPath}`);
             }
-        };
+        }
+    }, [user, loading, allowedRoles, redirect, pathname, router]);
 
-        validateUser();
-    }, [role, redirect, router]);
-    return checking; 
+    return { checking: loading || checking, user };
 };

@@ -1,4 +1,5 @@
 'use client';
+import { motion, useInView } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -32,45 +33,53 @@ const testimonials = [
 
 const TestimonialSlider = () => {
     return (
-        <section className="bg-gray-100 py-20 px-6 md:px-12">
-            <div className="max-w-6xl mx-auto text-center">
-                <h2 className="text-4xl font-bold text-gray-800 mb-12">
-                    Testimonials
-                </h2>
-                <Swiper
-                    modules={[Pagination, Autoplay]}
-                    spaceBetween={30}
-                    slidesPerView={1}
-                    pagination={{ clickable: true, el: '.custom-swiper-pagination' }}
-                    autoplay={{ delay: 5000, disableOnInteraction: false }}
-                    breakpoints={{
-                        768: {
-                            slidesPerView: 2,
-                        },
-                    }}
-                    className="pb-4"
-                >
-                    {testimonials.map((testimonial, index) => (
-                        <SwiperSlide key={index}>
-                            <div className="bg-white p-8 rounded-lg shadow-lg mx-4 h-full flex flex-col justify-between">
-                                <div>
-                                    <p className="text-gray-600 italic mb-4">
-                                        "{testimonial.feedback}"
-                                    </p>
-                                    <h3 className="text-xl font-semibold text-gray-800">
-                                        - {testimonial.name}
-                                    </h3>
+        <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mt-4"
+        >
+            <section className="bg-transparent py-2 px-6 md:px-12">
+                <div className="max-w-6xl mx-auto text-center">
+                    <h2 className="text-4xl font-bold text-gray-800 mb-12">
+                        Testimonials
+                    </h2>
+                    <Swiper
+                        modules={[Pagination, Autoplay]}
+                        spaceBetween={30}
+                        slidesPerView={1}
+                        pagination={{ clickable: true, el: '.custom-swiper-pagination' }}
+                        autoplay={{ delay: 5000, disableOnInteraction: false }}
+                        breakpoints={{
+                            768: {
+                                slidesPerView: 2,
+                            },
+                        }}
+                        className="pb-4"
+                    >
+                        {testimonials.map((testimonial, index) => (
+                            <SwiperSlide key={index}>
+                                <div className="bg-white p-8 rounded-lg shadow-lg mx-4 h-full flex flex-col justify-between">
+                                    <div>
+                                        <p className="text-gray-600 italic mb-4">
+                                            "{testimonial.feedback}"
+                                        </p>
+                                        <h3 className="text-xl font-semibold text-gray-800">
+                                            - {testimonial.name}
+                                        </h3>
+                                    </div>
                                 </div>
-                            </div>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
 
-                {/* Custom pagination container */}
-                <div className="custom-swiper-pagination mt-6 flex justify-center"></div>
+                    {/* Custom pagination container */}
+                    <div className="custom-swiper-pagination mt-6 flex justify-center"></div>
 
-            </div>
-        </section>
+                </div>
+            </section>
+        </motion.div>
     );
 };
 

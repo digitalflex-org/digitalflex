@@ -1,10 +1,10 @@
 'use client';
-import { api } from 'lib/axios';
+import { api } from '@/lib/axios';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import { signUpValidation } from 'validations/auth.validation';
+import { signUpValidation } from '@/validations/auth.validation';
 
 const Signup = () => {
   const [formData, setFormData] = useState({ email: '', name: '', password: '' });
@@ -46,7 +46,7 @@ const Signup = () => {
       } else if (error?.status === 401)
       {
         console.log(error)
-        toast.error('You do not have the permission to perform this action!'); 
+        toast.error('You do not have the permission to perform this action!');
       } else
       {
         console.error('Error signing up:', error);

@@ -1,42 +1,91 @@
 'use client';
-// import { useSearchParams } from 'next/navigation';
-import { useState, useEffect } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import { signinValidation } from 'validations/auth.validation';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { api } from 'lib/axios';
 
+import { useState } from 'react';
+import Link from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { api } from '@/lib/axios';
+import { ToastContainer, toast } from 'react-toastify';
+import { signinValidation } from '@/validations/auth.validation';
+import { useAuth } from '@/contexts/authContext';
 
 const Signin = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
+    const [loading, setLoading] = useState(false);
+    const searchParams = useSearchParams();
+    const callbackUrl = searchParams.get('callbackUrl');
+    // console.log('call back from the top:', callbackUrl);
     const router = useRouter();
-   
+    const { setUser } = useAuth() ?? {};
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
+
         try
         {
             signinValidation(formData);
-            const data = { ...formData };
-            const res = await api.post('/auth/signin', data);
-            console.log('response signin form data:', res);
-            if (res.status === 200)
+            const res = await api.post('/auth/signin', formData);
+
+            if (res.status === 200 && res.statusText === 'OK')
             {
-                // await setDataToLocalStorage('auth_token')                
+                // console.log('server res:', res?.data)
+                const userRole = res.data?.data?.userData?.role;
+                // const userPreferred_name = res.data?.data?.userData?.preferred_name;
+                // console.log(userPreferred_name)
+                setUser(res.data?.data?.userData);
+
+                // allowed roles or infer callbackUrl
+                const restrictedRoutes = {
+                    '/admin': ['admin'],
+                    '/onboarding': ['applicant', 'admin'],
+                };
+
+                let isAuthorized = true;
+                if (callbackUrl)
+                {
+                    const matched = Object.entries(restrictedRoutes).find(([path, roles]) =>
+                        callbackUrl.startsWith(path)
+                    );
+                    if (matched)
+                    {
+                        const [, allowedRoles] = matched;
+                        if (!allowedRoles.includes(userRole))
+                        {
+                            isAuthorized = false;
+                        }
+                    }
+                }
+
+                if (!isAuthorized)
+                {
+                    toast.warn('Unauthorized Action!');
+                    return;
+                }
+
                 toast.success('Signed in successfully!');
-                setTimeout(() => {
-                    router.push('/onboarding');
-                }, 1500);
+                router.push(callbackUrl || '/');
             }
         } catch (error)
         {
-            console.error('Error logging in:', error.message);
-            toast.error(error?.message || 'Error signing in');
+            if (error?.status === 404)
+            {
+                toast.error('Kindly signup and try again!');
+            } else
+            {
+                console.error('sign in error message :', error.message);
+                toast.error('Error signing in');
+            }
+        } finally
+        {
+            setLoading(false);
         }
     };
+
+
 
     return (
         <div className="py-10 px-4">
@@ -76,9 +125,11 @@ const Signin = () => {
 
                     <button
                         type="submit"
-                        className="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 font-semibold transition-transform duration-200 hover:scale-105 uppercase"
+                        disabled={loading}
+                        className={`w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 font-semibold transition-transform duration-200 hover:scale-105 uppercase ${loading ? 'opacity-50 cursor-not-allowed' : ''
+                            }`}
                     >
-                        Sign In
+                        {loading ? 'Signing In...' : 'Sign In'}
                     </button>
                 </form>
 
