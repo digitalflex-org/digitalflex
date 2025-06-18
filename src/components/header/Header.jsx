@@ -1,9 +1,34 @@
+'use client';
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 import globe_new from '../../assets/globe.png';
 import flare from '../../assets/Purple-Lens-Flare.png';
 import './header.css';
 
+
+const marketingPoints = [
+  "Digital Potential",
+  "Google Business Profile Potential",
+  "Social Media Potential",
+  "Website Potential",
+  "SEO Potential",
+  "Content Creation Potential",
+  "Branding Potential",
+  "Lead Generation Potential",
+  "Marketing Potential",
+  "Sales Potential",
+  "Customer Engagement Potential",
+  "Analytics Potential",
+]
 const Header = () => {
+  const [currentPointIndex, setCurrentPointIndex] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentPointIndex((prevIndex) => (prevIndex + 1) % marketingPoints.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
   return (
     <section className="relative w-full h-screen overflow-hidden bg-gradient-to-b from-[#0f0f1b] to-[#1a1a2e] text-white flex items-center justify-center px-6 md:px-12">
       {/* Flare Background */}
@@ -11,7 +36,7 @@ const Header = () => {
         <Image
           src={flare}
           alt="Purple Flare"
-          className="w-full h-full object-cover blur-[120px] opacity-50"
+          className="w-full h-full object-cover blur-[120px] opacity-50 "
         />
       </div>
 
@@ -29,8 +54,24 @@ const Header = () => {
         {/* Text */}
         <div className="text-center md:text-left max-w-xl">
           <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
-            Unlock Your <span className="text-purple-400">Digital Potential</span>
+            Unlock Your{" "}
+            <span className="text-purple-400 inline-block min-h-[2.5rem]">
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={marketingPoints[currentPointIndex]}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.8 }}
+                  className="inline-block"
+                >
+                  {marketingPoints[currentPointIndex]}
+                </motion.span>
+              </AnimatePresence>
+            </span>
+            {" "}with Digital Flex.
           </h1>
+
           <p className="text-lg md:text-xl text-gray-300 mb-6">
             Empower your business with innovative digital solutions from Digital Flex.
           </p>
