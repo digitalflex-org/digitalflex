@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import globe_new from '../../assets/globe.png';
 import flare from '../../assets/Purple-Lens-Flare.png';
 import './header.css';
+import { useRouter } from "next/navigation";
 
 
 const marketingPoints = [
@@ -23,6 +24,7 @@ const marketingPoints = [
 ]
 const Header = () => {
   const [currentPointIndex, setCurrentPointIndex] = useState(0);
+  const router = useRouter();
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentPointIndex((prevIndex) => (prevIndex + 1) % marketingPoints.length);
@@ -63,7 +65,7 @@ const Header = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.8 }}
-                  className="inline-block"
+                  className="inline-flex"
                 >
                   {marketingPoints[currentPointIndex]}
                 </motion.span>
@@ -76,7 +78,7 @@ const Header = () => {
             Empower your business with innovative digital solutions from Digital Flex.
           </p>
           <div>
-            <button className="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-full text-white font-medium transition duration-300 shadow-lg cursor-pointer">
+            <button onClick={() => router.replace('/contact')} className="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-full text-white font-medium transition duration-300 shadow-lg cursor-pointer">
               Get Started
             </button>
           </div>
