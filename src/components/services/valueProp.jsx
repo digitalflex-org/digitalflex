@@ -2,7 +2,7 @@ const valuePropositions = [
     {
         title: "Reduce Your Marketing Costs by 30%",
         description: "Optimize your marketing strategies with our expert solutions, leading to significant cost savings.",
-        icon: "💰", 
+        icon: "💰",
     },
     {
         title: "Enhance Your Business Value by 20%",
@@ -12,7 +12,7 @@ const valuePropositions = [
     {
         title: "Achieve Lasting Results with Improved Metrics",
         description: "Benefit from sustained growth through enhanced metrics and analytics, ensuring long-term success.",
-        icon: "📊", 
+        icon: "📊",
     },
 ];
 
@@ -27,7 +27,7 @@ const ElevateYourBrandSection = () => {
                 <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-12">
                     {valuePropositions.map((item, index) => (
                         <div key={index} className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition">
-                            <div className="text-4xl mb-6 text-[#ff6f3c]">{item.icon}</div>
+                            <div className="text-4xl mb-6 text-[#004e89]">{item.icon}</div>
                             <h3 className="text-2xl font-semibold text-[#1d3c6a] mb-4">{item.title}</h3>
                             <p className="text-[#333333]">{item.description}</p>
                         </div>

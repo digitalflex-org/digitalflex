@@ -45,9 +45,9 @@ const FeaturedSection = () => {
     return (
         <section className="bg-white rounded-lg shadow-md overflow-hidden my-4 flex justify-center">
             {loading ? (
-                <div className="w-full p-6 text-gray-500 text-center">Loading featured posts...</div>
+                <div className="w-full p-6 text-[#333333] text-center">Loading featured posts...</div>
             ) : featuredPosts.length === 0 ? (
-                <div className="w-full p-6 text-gray-500 text-center">No featured posts available.</div>
+                <div className="w-full p-6 text-[#333333] text-center">No featured posts available.</div>
             ) : (
                 <Carousel className="w-full max-w-[600px] relative my-auto">
                     <CarouselContent>

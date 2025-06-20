@@ -36,7 +36,7 @@ const Nav = () => {
     };
 
     return (
-        <nav className="bg-[#1d3c6a] text-white sticky top-0 z-50 shadow-md">
+        <nav className="bg-[#004e89] text-white sticky top-0 z-50 shadow-md">
             <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-3">

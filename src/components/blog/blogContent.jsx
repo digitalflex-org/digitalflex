@@ -46,8 +46,8 @@ const BlogContents = () => {
         <main className="p-6 max-w-5xl mx-auto">
 
             <header className="mb-8">
-                <h1 className="text-3xl font-bold text-gray-800">Explore Our Blog</h1>
-                <p className="text-gray-500 mt-1">Insights, tutorials, and updates to power your digital journey.</p>
+                <h1 className="text-3xl font-bold text-[#333333]">Explore Our Blog</h1>
+                <p className="text-[#333333] mt-1">Insights, tutorials, and updates to power your digital journey.</p>
             </header>
 
             <SearchSection />

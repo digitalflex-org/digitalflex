@@ -16,8 +16,8 @@ function BlogHeader() {
                 />
             </div>
             <div className="text-center ">
-                <h1 className="text-2xl font-bold text-gray-800">Digital Flex</h1>
-                <p className="text-gray-600">Providing you with a digital profile that stands out</p>
+                <h1 className="text-2xl font-bold text-[#333333]">Digital Flex</h1>
+                <p className="text-[#333333]">Providing you with a digital profile that stands out</p>
             </div>
         </div>
     )

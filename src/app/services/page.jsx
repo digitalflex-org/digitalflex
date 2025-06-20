@@ -57,10 +57,10 @@ const ServicesPage = () => {
             </section>
 
             {/* Call to Action Section */}
-            <section className="bg-[#1d3c6a] text-white py-16 text-center">
+            <section className="bg-[#004e89] text-white py-16 text-center">
                 <h2 className="text-3xl font-bold mb-4">Ready to Start Your Project?</h2>
                 <p className="text-xl mb-8">Let us help you create a compelling digital strategy and elevate your online presence.</p>
-                <button className="bg-[#ffeb3b] text-[#333333] px-6 py-3 rounded-lg font-semibold hover:bg-[#f29c11] transition">
+                <button className="bg-[#ff6f3c] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#d87d23] transition">
                     Contact Us
                 </button>
             </section>

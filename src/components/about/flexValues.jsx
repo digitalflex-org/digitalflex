@@ -8,26 +8,26 @@ const FlexValues = () => {
             title: "Future-Focused",
             description:
                 "We are committed to staying ahead of the curve, constantly innovating and adapting to the ever-evolving digital landscape. Our forward-thinking approach ensures that your business is always prepared for tomorrow’s challenges.",
-            icon: <Lightbulb className="w-12 h-12 text-blue-500" />,
+            icon: <Lightbulb className="w-12 h-12 text-[#004e89]" />,
 
         },
         {
             title: "Leadership",
             description:
                 "We take pride in setting trends, not following them. Our leadership comes from our deep expertise, ability to drive impactful results, and inspire confidence in our clients.",
-            icon: <Compass className="w-12 h-12 text-green-500" />,
+            icon: <Compass className="w-12 h-12 text-[#004e89]" />,
         },
         {
             title: "Excellence",
             description:
                 "Excellence is at the heart of everything we do. From providing top-tier customer service to delivering exceptional results, we strive for perfection and never settle for mediocrity.",
-            icon: <Award className="w-12 h-12 text-yellow-500" />,
+            icon: <Award className="w-12 h-12 text-[#004e89]" />,
         },
         {
             title: "Xperience",
             description:
                 "We prioritize providing an unparalleled experience for our clients. Every interaction, strategy, and solution is crafted with care to ensure satisfaction, long-term success, and a smooth, seamless journey.",
-            icon: <Star className="w-12 h-12 text-red-500" />,
+            icon: <Star className="w-12 h-12 text-[#004e89]" />,
         },
     ];
 
@@ -51,7 +51,7 @@ const FlexValues = () => {
                                 className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition"
                             >
                                 <div className="flex justify-center mb-4">{value.icon}</div>
-                                <h3 className="text-2xl font-semibold text-gray-700 mb-3">
+                                <h3 className="text-2xl font-semibold text-[#333333] mb-3">
                                     {value.title}
                                 </h3>
                                 <p className="text-gray-600">{value.description}</p>

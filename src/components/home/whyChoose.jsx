@@ -23,7 +23,7 @@ const WhyChoose = () => {
     return (
         <div>
             <motion.div ref={ref} initial={{ opacity: 0, y: 50 }} animate={isHeadingInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, ease: 'easeOut' }}>
-                <h2 className={`text-header text-center ${poppins.className}`}>Why choose us?</h2>
+                <h2 className={`text-4xl pt-8 font-extrabold text-[#333333] text-center mb-4 ${poppins.className}`}>Why choose us?</h2>
                 <div className=''>
                     <p className="text-black p-5 text-center">At Digital Flex we specialize in enhancing your online visibility through meticulous Google Business Profile management and innovative digital marketing strategies. Our customized solutions aim to engage customers, improve brand perception, and ultimately expand your business reach in today's competitive landscape.</p>
                 </div>
