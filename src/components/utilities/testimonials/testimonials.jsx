@@ -43,7 +43,7 @@ const TestimonialSlider = () => {
             <section className="bg-transparent py-2 px-6 md:px-12">
                 <div className="max-w-6xl mx-auto text-center">
                     <h2 className="text-4xl font-bold text-[#333333] mb-12">
-                        Testimonials
+                        What Our Clients Say
                     </h2>
                     <Swiper
                         modules={[Pagination, Autoplay]}
