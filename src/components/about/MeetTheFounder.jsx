@@ -30,13 +30,13 @@ const MeetTheFounder = () => {
                 <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10">
                     {/* Founder Image */}
                     <div className="w-full md:w-1/2">
-                        <Image
+                        {/*<Image
                             src={Norh}
                             alt="Norh Sharif - Founder of Digital Flex"
                             width={500}
                             height={500}
                             className="rounded-2xl shadow-lg object-cover"
-                        />
+                        />*/}
                         <div className=''>
                             <h2 className="text-xl text-gray-600 font-semibold mt-4 text-center md:text-center">{foundersBio[0].name}</h2>
                             <p className="text-gray-600 text-center md:text-center">{foundersBio[0].title}</p>
