@@ -18,8 +18,8 @@ export const metadata = {
 
 const AboutPage = () => {
     return (
-        <div className="bg-gray-100 py-16">
-            <div className="container mx-auto px-6 md:px-12">
+        <div className="bg-gray-10 py-16">
+            <div className="container mx-auto px-6 md:px-12 pb-4">
                 <div className="flex flex-col md:flex-row items-center">
                     {/* Image Section */}
                     <div className="md:w-1/2">
@@ -30,7 +30,7 @@ const AboutPage = () => {
                             height={400}
                             className="rounded-lg shadow-lg"
                         />
-                        
+
                     </div>
                     {/* Content Section */}
                     <div className="md:w-1/2 mt-6 md:mt-0 md:pl-12">
