@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 
 
 const marketingPoints = [
-  "Transform Your Business with Digital Flex",
+  "Transform Your Business",
   "Unlock Your Digital Potentials",
   "Manage Your Google Business Profile",
   "Improve Social Media",
