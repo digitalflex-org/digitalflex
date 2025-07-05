@@ -2,9 +2,12 @@
 import React from 'react'
 import { api } from '../../lib/axios';
 import Link from 'next/link';
+import UserLogout from '../ui/userLogout';
+import { useAuth } from '@/contexts/authContext';
 
 
 const onboardingCategories = () => {
+  const { user, checking } = useAuth();
 
   const title = 'Resource Hub'
   const onboardingSections = [{
@@ -35,7 +38,13 @@ const onboardingCategories = () => {
   return (
     <section className="bg-white py-12 px-8 font-serif">
       <div className="container mx-auto">
-        <h2 className="text-3xl font-bold mb-6 text-blue-900">{title}</h2>
+        <div className='flex justify-between items-center'>
+          <h2 className="text-xl md:text-3xl font-bold mb-6 text-blue-900">{title}</h2>
+          <div className='mb-6'>
+            <UserLogout user={user} />
+          </div>
+
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {onboardingSections.map((boardingSection, index) => (
             <div key={index} className="bg-gray-100 p-6 rounded-lg shadow-lg text-black">
