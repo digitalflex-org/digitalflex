@@ -57,7 +57,7 @@ const FeaturedSection = () => {
                                     {post.imageUrl && (
                                         <div className="w-full h-[200px]">
                                             <Image
-                                                src={post.imageUrl || 'https://archive.org/download/placeholder-image//placeholder-image.jpg'}
+                                                src={post.imageUrl || 'https://archive.org/download/placeholder-image/placeholder-image.jpg'}
                                                 alt={`Image for ${post.title}`}
                                                 width={600}
                                                 height={400}

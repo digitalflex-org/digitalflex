@@ -24,7 +24,7 @@ export default function CareerSection({ content, onChange }) {
     }, []);
 
     const handleJobDelete = async (jobId) => {
-        console.log('deleting job with id:', jobId);
+        // console.log('deleting job with id:', jobId);
         if (!jobId) return;
         setLoading(true);
         try
@@ -53,7 +53,7 @@ export default function CareerSection({ content, onChange }) {
         {
             const res = await fetchJobById(jobId);
             const job = res?.job;
-            console.log('job edit data:', job);
+            // console.log('job edit data:', job);
             if (!job) return toast.error('Job not found');
             setEditingJob(job);
         } catch (error)
@@ -68,7 +68,7 @@ export default function CareerSection({ content, onChange }) {
     const handleSaveJob = async (updatedJob) => {
         try
         {
-            console.log('job id data:', updatedJob);
+            // console.log('job id data:', updatedJob);
             await updateJob(updatedJob);
             toast.success('Job updated!');
             handleFetchJobs();
@@ -106,7 +106,7 @@ export default function CareerSection({ content, onChange }) {
                 }
 
                 setSelectedJob(job);
-                console.log('Set selected job:', job);
+                // console.log('Set selected job:', job);
             }
         } catch (error)
         {

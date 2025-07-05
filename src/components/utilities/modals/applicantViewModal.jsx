@@ -19,7 +19,7 @@ const ApplicantViewModal = ({ applicant, onClose }) => {
     } = applicant;
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-70">
             <div className="bg-white rounded-lg p-6 w-full max-w-2xl shadow-lg overflow-y-auto max-h-[90vh]">
                 <div className="flex justify-between items-center mb-4">
                     <h2 className="text-2xl font-bold">Applicant Details</h2>
@@ -49,25 +49,11 @@ const ApplicantViewModal = ({ applicant, onClose }) => {
                         </ul>
                     </div>
 
-                    <div><strong>Created At:</strong> {new Date(createdAt).toLocaleString()}</div>
-                    <div><strong>Updated At:</strong> {new Date(updatedAt).toLocaleString()}</div>
+                    <div><strong>Joined:</strong> {new Date(createdAt).toLocaleString()}</div>
+                    {/*<div><strong>Updated At:</strong> {new Date(updatedAt).toLocaleString()}</div>*/}
                     <div><strong>Last Active At:</strong> {new Date(lastActiveAt).toLocaleString()}</div>
 
-                    <div>
-                        <strong>Progress:</strong>
-                        <ul className="list-decimal list-inside pl-4 space-y-1 max-h-40 overflow-y-auto">
-                            {progress.length > 0 ? (
-                                progress.map((item, index) => (
-                                    <li key={index}>
-                                        {item.title ?? 'Untitled Step'}
-                                        {item.status && ` - ${item.status}`}
-                                    </li>
-                                ))
-                            ) : (
-                                <li>No progress data available</li>
-                            )}
-                        </ul>
-                    </div>
+
                 </div>
             </div>
         </div>
