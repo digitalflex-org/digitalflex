@@ -42,6 +42,7 @@ const Signin = () => {
                 const restrictedRoutes = {
                     '/admin': ['admin'],
                     '/onboarding': ['applicant', 'admin'],
+                    '/blog/editor': ['editor', 'admin'],
                 };
 
                 let isAuthorized = true;
@@ -74,6 +75,9 @@ const Signin = () => {
             if (error?.status === 404)
             {
                 toast.error('Kindly signup and try again!');
+            } else if (error?.status === 400)
+            {
+                toast.error('Invalid Email or Password!')
             } else
             {
                 console.error('sign in error message :', error.message);
@@ -122,6 +126,14 @@ const Signin = () => {
                             required
                         />
                     </div>
+                    <div>
+                        <p className="mt-6 text-end text-sm text-blue-700">
+                            <Link href="/forgot-password" className="hover:underline">
+                                Forgot password?
+                            </Link>
+                        </p>
+                    </div>
+
 
                     <button
                         type="submit"
