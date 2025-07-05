@@ -2,7 +2,6 @@
 import React from 'react'
 import { ChartAreaInteractive } from './chart-area-interactive'
 
-// import Example from './chart-area-interactive'
 
 const Overview = () => {
   return (

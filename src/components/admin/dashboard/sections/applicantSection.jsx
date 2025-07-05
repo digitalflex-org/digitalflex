@@ -2,13 +2,15 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
-import { Pen, Trash2, User } from 'lucide-react';
+import { Eye, Pen, Trash2, User } from 'lucide-react';
 import { fetchApplicantsFromAPI } from '@/lib/actions/applicants/applicantsActions';
 import Spinner from '@/components/spinner';
-import { fetchApplicantById } from '@/lib/actions/dashboard/dashboard';
-import ApplicantViewModal from '@/components/utilities/modals/applicantEditModal';
+import { deleteData, fetchApplicantById } from '@/lib/actions/dashboard/dashboard';
+import ApplicantViewModal from '@/components/utilities/modals/applicantViewModal';
 
-export default function ApplicantsSection({ content, onChange }) {
+
+export default function ApplicantsSection({ content = '', onChange = () => { } }) {
+
     const [applicants, setApplicants] = useState([]);
     const [loading, setLoading] = useState(false);
     const [selectedApplicant, setSelectedApplicant] = useState(null);
@@ -22,23 +24,49 @@ export default function ApplicantsSection({ content, onChange }) {
         }
     }, []);
 
-    const handleApplicantEdit = async (applicantId) => {
+    const handleApplicantDelete = async (applicantId) => {
+        if (!applicantId) return;
+        setLoading(true);
+        try
+        {
+            await deleteData(applicantId, 'applicants');
+            toast.success('Selected Applicant Data Deleted!')
+        } catch (error)
+        {
+            if (error?.isAxiosError)
+            {
+                toast.error('Connection error.', { toastId: 'connection-error' });
+            } else
+            {
+                toast.error('Unexpected error occurred.', { toastId: 'delete-error' });
+            }
+
+        }
+    }
+    const handleApplicantView = async (applicantId) => {
         setLoading(true);
         try
         {
             const applicant = await fetchApplicantById(applicantId);
+            // console.log(applicant);
             if (!applicant)
             {
                 toast.error('Applicant not found.', { toastId: 'applicant-not-found' });
             } else
             {
-                toast.success('Applicant fetched successfully!', { toastId: 'applicant-success' });
+                // toast.success('Applicant fetched successfully!', { toastId: 'applicant-success' });
                 const newContent = JSON.stringify(applicant, null, 2);
                 if (newContent !== content)
                 {
-                    onChange(newContent);
+                    try
+                    {
+                        onChange(newContent);
+                    } catch (e)
+                    {
+                        console.error('Error in onChange:', e);
+                    }
                 }
-                setSelectedApplicant(applicant);
+                setSelectedApplicant(applicant.data);
             }
         } catch (error)
         {
@@ -54,7 +82,7 @@ export default function ApplicantsSection({ content, onChange }) {
             setLoading(false);
         }
     };
-    
+
 
     const fetchApplicants = async () => {
         setLoading(true);
@@ -71,7 +99,7 @@ export default function ApplicantsSection({ content, onChange }) {
                 return;
             }
 
-            toast.success("Applicants fetched successfully!", { toastId: 'applicants-success' });
+            // toast.success("Applicants fetched successfully!", { toastId: 'applicants-success' });
             setApplicants(data);
 
             const newContent = JSON.stringify(data, null, 2);
@@ -111,8 +139,8 @@ export default function ApplicantsSection({ content, onChange }) {
                                     {applicant.name} - {applicant.email}
                                 </div>
                                 <div className="flex gap-6">
-                                    <Pen onClick={() => handleApplicantEdit(applicant._id)} className="hover:text-blue-500" />
-                                    <Trash2 className="hover:text-red-500" />
+                                    <Eye onClick={() => handleApplicantView(applicant._id)} className="hover:text-blue-500" />
+                                    <Trash2 onClick={() => handleApplicantDelete(applicant._id)} className="hover:text-red-500" />
                                 </div>
                             </li>
                         ))}

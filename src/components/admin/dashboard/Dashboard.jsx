@@ -3,14 +3,13 @@ import { useEffect, useRef, useState } from 'react';
 import Card from '@/components/utilities/card/card';
 import Button from '@/components/utilities/button/buton';
 import ApplicantsSection from './sections/applicantSection';
-import { ChevronDown, ChevronUp, Cross, Dot, Menu, UserCircle, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { fetchActiveUsers, Logout } from '@/lib/actions/dashboard/dashboard';
 import Overview from './sections/overview/overview';
 import { useAuthGuard } from '@/components/utilities/hooks/useAuthGuard';
-import JobViewModal from '@/components/utilities/modals/jobViewModal';
 import CareerSection from './sections/careerSection';
-import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
+import UserLogout from '@/components/ui/userLogout';
 
 
 export default function AdminDashboard({ user }) {
@@ -18,10 +17,8 @@ export default function AdminDashboard({ user }) {
 
     const [section, setSection] = useState('overview');
     const [activeUsers, setActiveUsers] = useState([]);
-    const [toggled, setToggled] = useState(false);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const hasFetched = useRef(false);
-    const router = useRouter();
 
     const sections = ['overview', 'applicants', 'careers', 'onboarding', 'settings'];
 
@@ -37,58 +34,21 @@ export default function AdminDashboard({ user }) {
         }
     }, []);
 
-    const handleLogout = async () => {
-        try
-        {
-            const res = await Logout()
-            if (res.status === 200)
-            {
-                toast.success('Logged Out')
-                router.push('/auth?tab=signin');
-            }
 
-        } catch (error)
-        {
-            console.error('Error Logging Out', error)
-        }
-    }
 
     return (
         <div className="min-h-screen flex flex-col bg-gray-50 font-serif justify-around">
             <header className="w-full flex items-center justify-between px-6 py-4 shadow-md bg-white">
                 <button
-                    className="lg:hidden p-2 text-blue-800"
+                    className="lg:hidden p-2 text-[#004e89]"
                     onClick={() => setIsSidebarOpen((prev) => !prev)}
                     aria-label="Toggle Navigation Menu"
                 >
                     {isSidebarOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                 </button>
 
-                <h1 className="text-xl font-bold text-blue-800">Admin Dashboard</h1>
-                <div className="relative flex items-center space-x-3">
-                    <UserCircle className="w-8 h-8 text-gray-600" />
-
-                    <div className="flex flex-col items-start">
-                        <button
-                            onClick={() => setToggled(!toggled)}
-                            className="flex items-center space-x-1 text-sm font-medium text-gray-800 focus:outline-none hover:underline"
-                        >
-                            <span className='capitalize'>{user?.preferred_name || user?.email || 'Admin'}</span>
-                            {toggled ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                        </button>
-
-                        {toggled && (
-                            <div className="absolute right-0 mt-10 w-40 bg-white border border-gray-200 rounded shadow-lg z-10">
-                                <button
-                                    onClick={() => handleLogout()}
-                                    className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
-                                >
-                                    Logout
-                                </button>
-                            </div>
-                        )}
-                    </div>
-                </div>
+                <h1 className="text-xl font-bold text-[#004e89]">Admin Dashboard</h1>
+                <UserLogout user={user} />
 
             </header>
 
@@ -106,7 +66,7 @@ export default function AdminDashboard({ user }) {
                         </button>
                     </div>
 
-                    <nav className="flex flex-col gap-2 text-blue-800">
+                    <nav className="flex flex-col gap-2 text-[#004e89]">
                         {sections.map((item) => (
                             <Button
                                 key={item}
