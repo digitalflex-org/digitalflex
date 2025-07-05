@@ -1,17 +1,46 @@
+'use client';
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 import globe_new from '../../assets/globe.png';
 import flare from '../../assets/Purple-Lens-Flare.png';
 import './header.css';
+import { useRouter } from "next/navigation";
 
+
+const marketingPoints = [
+  "Transform Your Business",
+  "Unlock Your Digital Potentials",
+  "Manage Your Google Business Profile",
+  "Improve Social Media",
+  "Unlock Your Website Potential",
+  "Improve Your SEO",
+  "Manage Your PPC",
+  "Improve Your Online Visibility",
+  "Your Business Content Creation",
+  "Branding Got Easier",
+  "Improve Your Lead Generation",
+  "Marketing Like Never Before",
+  "Improve Your Customer Engagement Potential",
+
+]
 const Header = () => {
+  const [currentPointIndex, setCurrentPointIndex] = useState(0);
+  const router = useRouter();
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentPointIndex((prevIndex) => (prevIndex + 1) % marketingPoints.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
   return (
-    <section className="relative w-full h-screen overflow-hidden bg-gradient-to-b from-[#0f0f1b] to-[#1a1a2e] text-white flex items-center justify-center px-6 md:px-12">
+    <section className="relative w-full h-screen overflow-hidden bg-gradient-to-b from-[#1d3c6a] to-[#004e89] text-white flex items-center justify-center px-6 md:px-12">
       {/* Flare Background */}
       <div className="absolute w-[150vw] h-[150vh] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none">
         <Image
           src={flare}
           alt="Purple Flare"
-          className="w-full h-full object-cover blur-[120px] opacity-50"
+          className="w-full h-full object-cover blur-[120px] opacity-50 "
         />
       </div>
 
@@ -27,15 +56,31 @@ const Header = () => {
         </div>
 
         {/* Text */}
-        <div className="text-center md:text-left max-w-xl">
+        <div className="text-center md:text-left max-w-2xl">
           <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
-            Unlock Your <span className="text-purple-400">Digital Potential</span>
+            {/*  Unlock Your{" "} */}
+            <span className="text-[#fefefe] inline-block min-h-[2.5rem]">
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={marketingPoints[currentPointIndex]}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.8 }}
+                  className="inline-flex"
+                >
+                  {marketingPoints[currentPointIndex]}
+                </motion.span>
+              </AnimatePresence>
+            </span>
+            {" "}With Digital Flex.
           </h1>
+
           <p className="text-lg md:text-xl text-gray-300 mb-6">
             Empower your business with innovative digital solutions from Digital Flex.
           </p>
           <div>
-            <button className="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-full text-white font-medium transition duration-300 shadow-lg cursor-pointer">
+            <button onClick={() => router.replace('/contact')} className="px-6 py-3 bg-[#004e89] hover:bg-purple-700 rounded-full text-white font-medium transition duration-300 shadow-lg cursor-pointer">
               Get Started
             </button>
           </div>

@@ -22,8 +22,8 @@ export default function CareerDetailClient({ job }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // You can send formData to an API here
-        console.log('Submitting:', formData);
+        // send form data to the server which will deliver to the hiring manager dedicated email for Career she's still using HR's.
+        // console.log('Submitting:', formData);
     };
 
     return (

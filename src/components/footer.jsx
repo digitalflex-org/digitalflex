@@ -4,7 +4,7 @@ import { Facebook, Twitter, Linkedin, Phone, Mail, Clock, MapPin, Instagram, Mus
 
 export default function Footer() {
     return (
-        <footer className="bg-[#1d3c6a] text-white pt-10 pb-6">
+        <footer className="bg-[#004e89] text-white pt-10 pb-6">
             <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
                 {/* Logo and About */}
                 <div>

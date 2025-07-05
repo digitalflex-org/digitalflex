@@ -1,11 +1,33 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Work_Sans, Inter, Montserrat, Poppins, Open_Sans, Roboto } from "next/font/google";
 import "./globals.css";
 import Nav from "../components/nav";
 import Footer from "../components/footer";
+import { AuthProvider } from "@/contexts/authContext";
 
 
+//section headers h4
+const openSans = Open_Sans({
+  subsets: ['latin'],
+  weight: '400',
+});
 
 
+//headings h2/h3
+const poppins = Poppins({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-poppins',
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
+});
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: "--font-inter",
+})
+
+const workSans = Work_Sans({
+  subsets: ['latin'],
+})
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -36,9 +58,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} >
+      <body className={geistSans.className} >
         <Nav />
-        {children}
+        <AuthProvider>
+          {children}
+        </AuthProvider>
         <Footer />
       </body>
     </html>

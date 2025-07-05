@@ -1,9 +1,10 @@
 'use client';
+import { api } from '@/lib/axios';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import { signUpValidation } from 'validations/auth.validation';
+import { signUpValidation } from '@/validations/auth.validation';
 
 const Signup = () => {
   const [formData, setFormData] = useState({ email: '', name: '', password: '' });
@@ -12,11 +13,13 @@ const Signup = () => {
 
   useEffect(() => {
     const roleFromQuery = searchParams.get('role');
+    // console.log('role from query:', roleFromQuery);
     if (roleFromQuery)
     {
       setRole(roleFromQuery);
-      console.log('Role set to:', roleFromQuery);
+      // console.log('Role set to:', roleFromQuery);
     }
+    // handleSubmit();
   }, [searchParams]);
 
   const handleChange = (e) => {
@@ -28,19 +31,34 @@ const Signup = () => {
     try
     {
       signUpValidation(formData);
-      const data = { ...formData, role };
-      console.log('submitting signup form data:', data);
-      toast.success('Signed up successfully!');
+      const data = { ...formData };
+      // console.log('submitting signup form data:', data);
+      const res = await api.post(`/auth/signup?role=${role}`, data);
+      if (res.status === 201)
+      {
+        toast.success('Signed up successfully!');
+      }
     } catch (error)
     {
-      console.error('Error signing up:', error);
-      toast.error(error?.issues?.[0]?.message || 'Error signing up');
+      if (error?.status === 409)
+      {
+        toast.error('User already exist, kindly sign in!');
+      } else if (error?.status === 401)
+      {
+        console.log(error)
+        toast.error('You do not have the permission to perform this action!');
+      } else
+      {
+        console.error('Error signing up:', error);
+        toast.error('Error signing up');
+      }
     }
   };
 
   return (
     <div className="py-10 px-4">
       <ToastContainer />
+
       <div className="w-full max-w-md mx-auto bg-white shadow-lg rounded-xl p-8">
         <h2 className="text-3xl font-bold text-center text-blue-700 mb-6">Create Your Account</h2>
         <form onSubmit={handleSubmit} className="space-y-5">
