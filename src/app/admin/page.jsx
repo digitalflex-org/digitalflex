@@ -5,12 +5,11 @@ import { useAuthGuard } from "@/components/utilities/hooks/useAuthGuard";
 
 
 const AdminPage = () => {
-    // const { checking, user } = useAuthGuard(['admin']);
-    // if (checking) return <Spinner />
+    const { checking, user } = useAuthGuard(['admin']);
+    if (checking) return <Spinner />
     return (
-        <div>
-            {/*<AdminDashboard user={user} />*/}
-            <AdminDashboard />
+        <div className="relative">
+            <AdminDashboard user={user} />
         </div>
     );
 };
