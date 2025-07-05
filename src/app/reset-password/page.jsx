@@ -96,3 +96,11 @@ export default function ResetPassword() {
         </div>
     );
 }
+
+export default function Page() {
+    return (
+        <Suspense fallback={<div>Loading reset form…</div>}>
+            <ResetPassword />
+        </Suspense>
+    );
+}
