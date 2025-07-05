@@ -28,7 +28,7 @@ const OnboardingMaterialsContent = () => {
     if (!query || query === 'undefined' || query === null)
     {
       toast.info('You need to select a resource category!');
-      setChecking(false); // allow UI to render
+      setChecking(false);
     }
   }, [query]);
 
@@ -83,7 +83,7 @@ const OnboardingMaterialsContent = () => {
 
   if (checking) return <Spinner />;
   if (error) return <p className="text-red-500">{error}</p>;
-  if (!query) return <p className="text-red-500 text-2xl   flex gap-4">
+  if (!query) return <div> <p className="text-red-500 text-2xl   flex gap-4">
     <div className="flex items-center gap-4 mb-2">
       <button
         onClick={() => router.push('/onboarding')}
@@ -91,7 +91,7 @@ const OnboardingMaterialsContent = () => {
       >
         <ArrowLeft className="text-blue-900 w-6 h-6" />
       </button>
-    </div> No category selected. Please go back and choose one.</p>;
+    </div> No category selected. Please go back and choose one.</p></div>;
 
   return (
     <div>
