@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { api } from '@/lib/axios';
 
-export default function ActivatePage() {
+function ActivatePage() {
     const searchParams = useSearchParams();
     const router = useRouter();
     const activationToken = searchParams.get('token');
@@ -75,5 +75,13 @@ export default function ActivatePage() {
                 )}
             </div>
         </main>
+    );
+}
+
+export default function Page() {
+    return (
+        <Suspense fallback={<div>Loading…</div>}>
+            <ActivatePage />
+        </Suspense>
     );
 }
