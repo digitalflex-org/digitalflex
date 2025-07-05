@@ -7,6 +7,7 @@ import { api } from '@/lib/axios';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { stripHtml } from '../utilities/stripHtml';
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
 
@@ -16,6 +17,7 @@ const BlogContents = () => {
     const [blogs, setBlogs] = useState([]);
     const [selectedBlog, setSelectedBlog] = useState(null);
     const router = useRouter();
+
     useEffect(() => {
         async function fetchPosts() {
             try
@@ -82,8 +84,9 @@ const BlogContents = () => {
                         </div>
 
                         <p className="text-gray-700 mb-3">
-                            {post.content.substring(0, 160)}...
+                            {stripHtml(post.content).substring(0, 160)}...
                         </p>
+
 
                         <Link href={`/blog/${post._id}`}>
                             <span className="text-blue-500 font-medium hover:underline">Read more →</span>

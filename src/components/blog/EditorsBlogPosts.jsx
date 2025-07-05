@@ -1,18 +1,44 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
+import { Dialog, DialogTitle } from '@headlessui/react';
 import { fetchBlogs } from '@/lib/actions/dashboard/dashboard';
 import { CalendarDays, Tags, Sparkles, Pen, Trash2 } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { stripHtml } from '../utilities/stripHtml';
 import { useDebouncedCallback } from '@/lib/actions/debounce';
 import { useRouter } from 'next/navigation';
+import { deleteBlogPost, updateBlogPost } from '@/lib/actions/others/blogActions';
+import { useQuill } from 'react-quilljs';
+import 'quill/dist/quill.snow.css';
 
 export default function EditorsBlogPosts({ user = null }) {
+    const { quill, quillRef } = useQuill();
     const [blogs, setBlogs] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [editData, setEditData] = useState(null);
+    const [deleteTarget, setDeleteTarget] = useState(null);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const hasFetched = useRef(false);
     const router = useRouter();
 
+
+    const openEditModal = (post) => {
+        setEditData(post);
+        setIsModalOpen(true);
+    }
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setEditData(null);
+    }
+    const openDeleteModal = (blog) => {
+        setDeleteTarget(blog);
+        setIsDeleteModalOpen(true);
+    }
+    const closeDeleteModal = () => {
+        setDeleteTarget(null);
+        setIsDeleteModalOpen(false);
+    }
     useEffect(() => {
         if (!hasFetched.current)
         {
@@ -20,6 +46,12 @@ export default function EditorsBlogPosts({ user = null }) {
             hasFetched.current = true;
         }
     }, []);
+    useEffect(() => {
+        if (quill && editData?.content)
+        {
+            quill.clipboard.dangerouslyPasteHTML(editData.content);
+        }
+    }, [quill, editData?.content]);
 
     const getBlogs = async () => {
         try
@@ -34,6 +66,58 @@ export default function EditorsBlogPosts({ user = null }) {
     const handleViewPost = useDebouncedCallback((id) => {
         router.push(`/blog/${id}`);
     }, 500);
+
+    const handleUpdate = async (e) => {
+        e.preventDefault();
+        try
+        {
+            // console.log('editedData:', editData)
+            const payload = {
+                title: editData.title,
+                content: editData.content || '',
+                tags: typeof editData.tags === 'string'
+                    ? editData.tags.split(',').map(t => t.trim())
+                    : editData.tags,
+                category: typeof editData.category === 'string'
+                    ? editData.category.split(',').map(c => c.trim())
+                    : editData.category
+            };
+
+
+            const updatedPost = await updateBlogPost(editData._id, payload);
+
+            if (updatedPost)
+            {
+                setBlogs((prev) =>
+                    prev.map((b) => (b._id === updatedPost._id ? updatedPost : b))
+                );
+                closeModal();
+            } else
+            {
+                console.error('Update failed: No data returned');
+            }
+        } catch (err)
+        {
+            console.error('Error updating blog:', err);
+        }
+    };
+    const handleDelete = async (id) => {
+        if (!deleteTarget?._id) return;
+
+        try
+        {
+            await deleteBlogPost({ ids: [deleteTarget._id] });
+            setBlogs((prev) => prev.filter((b) => b._id !== deleteTarget._id));
+            closeDeleteModal();
+        } catch (err)
+        {
+            console.error('Failed to delete blog:', err);
+            alert('Failed to delete blog post.');
+        }
+    };
+
+
+
 
     return (
         <div className="min-h-screen bg-gray-50 font-serif">
@@ -88,8 +172,10 @@ export default function EditorsBlogPosts({ user = null }) {
                                         View full post →
                                     </button>
                                     <div className='flex gap-2 text-[#004e89] cursor-pointer'>
-                                        <span><Pen /></span>
-                                        <span><Trash2 /></span>
+                                        <span onClick={() => openEditModal(blog)}><Pen /></span>
+                                        <span onClick={() => openDeleteModal(blog)}><Trash2 /></span>
+
+
                                     </div>
                                 </div>
                             </div>
@@ -97,7 +183,80 @@ export default function EditorsBlogPosts({ user = null }) {
                     ))
                 )}
             </main>
+
+
+            {
+
+                isModalOpen && (
+                    <Dialog open={isModalOpen} onClose={closeModal} className="fixed inset-0 z-50 flex items-center justify-center">
+                        <div className="fixed inset-0 bg-black bg-opacity-30" aria-hidden="true" />
+
+                        <div className="relative bg-white p-6 w-full max-w-xl mx-auto rounded shadow-lg z-50">
+                            <DialogTitle className="text-xl font-semibold mb-4">Edit Blog Post</DialogTitle>
+                            <form onSubmit={handleUpdate}>
+                                <input
+                                    type="text"
+                                    className="w-full mb-3 p-2 border rounded"
+                                    value={editData.title}
+                                    onChange={(e) => setEditData({ ...editData, title: e.target.value })}
+                                    required
+                                />
+                                <input
+                                    type="text"
+                                    className="w-full mb-3 p-2 border rounded"
+                                    value={editData.tags}
+                                    onChange={(e) => setEditData({ ...editData, tags: e.target.value })}
+                                    required
+                                />
+                                <input
+                                    type="text"
+                                    className="w-full mb-3 p-2 border rounded"
+                                    value={Array.isArray(editData.category) ? editData.category.join(', ') : editData.category || ''}
+                                    onChange={(e) => setEditData({ ...editData, category: e.target.value })}
+                                    required
+                                />
+                                {
+                                    // <div ref={quillRef} className="h-40 mb-3" >
+                                    <textarea
+                                        value={stripHtml(editData.content)}
+                                        onChange={(e) => setEditData({ ...editData, content: e.target.value })}
+                                        className='w-full min-h-[350px]'
+                                    />
+
+
+                                }
+
+                                <div className="flex justify-end gap-2">
+                                    <button type="button" onClick={closeModal} className="px-4 py-2 bg-gray-200 rounded">
+                                        Cancel
+                                    </button>
+                                    <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded">
+                                        Update
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </Dialog>
+                )
+            }
+
+            <Dialog open={isDeleteModalOpen} onClose={closeDeleteModal} className="fixed inset-0 z-50 flex items-center justify-center">
+                <div className="fixed inset-0 bg-black bg-opacity-30" aria-hidden="true" />
+                <div className="relative bg-white p-6 w-full max-w-md mx-auto rounded shadow-lg z-50">
+                    <DialogTitle className="text-lg font-semibold mb-3">Delete Blog Post</DialogTitle>
+                    <p className="text-gray-700 mb-5">
+                        Are you sure you want to delete <strong>{deleteTarget?.title}</strong>? This action cannot be undone.
+                    </p>
+                    <div className="flex justify-end gap-2">
+                        <button onClick={closeDeleteModal} className="px-4 py-2 bg-gray-200 rounded">Cancel</button>
+                        <button onClick={handleDelete} className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+            </Dialog>
+
         </div>
-    );
+    )
 }
 
