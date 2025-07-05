@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { api } from '@/lib/axios';
 
-export default function ResetPassword() {
+function ResetPassword() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const resetToken = searchParams.get('token');
