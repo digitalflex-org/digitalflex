@@ -80,7 +80,7 @@ const Header = () => {
             Empower your business with innovative digital solutions from Digital Flex.
           </p>
           <div>
-            <button onClick={() => router.replace('/contact')} className="px-6 py-3 bg-[#004e89] hover:bg-purple-700 rounded-full text-white font-medium transition duration-300 shadow-lg cursor-pointer">
+            <button onClick={() => router.replace('/contact')} className="px-6 py-3 bg-[#004e89] hover:bg-[#1d3c6a] rounded-full text-white font-medium transition duration-300 shadow-lg cursor-pointer">
               Get Started
             </button>
           </div>
