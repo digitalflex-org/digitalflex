@@ -11,11 +11,6 @@ const openSans = Open_Sans({
   weight: '400',
 });
 
-const roboto = Roboto({
-  weight: '400',
-  subsets: ['latin'],
-  display: 'swap',
-});
 
 //headings h2/h3
 const poppins = Poppins({
@@ -24,13 +19,6 @@ const poppins = Poppins({
   variable: '--font-poppins',
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
 });
-
-const montserrat = Montserrat({
-  weight: ['400', '700'],
-  subsets: ['latin'],
-  display: 'swap',
-});
-
 
 const inter = Inter({
   subsets: ['latin'],
