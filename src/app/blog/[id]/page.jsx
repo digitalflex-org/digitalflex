@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { toast } from 'react-toastify';
-
+import { stripHtml } from '@/components/utilities/stripHtml';
 const BlogContent = () => {
     const { id } = useParams();
     const [post, setPost] = useState(null);
@@ -67,9 +67,14 @@ const BlogContent = () => {
                     </p>
                 </div>
 
+                {/*
                 <div className="text-gray-800 leading-relaxed whitespace-pre-line">
-                    {post.content}
-                </div>
+                     {post.content}
+                </div> */}
+                <div
+                    className="prose prose-blue max-w-none"
+                    dangerouslySetInnerHTML={{ __html: post.content }}
+                />
             </div>
         </div>
     );
