@@ -6,7 +6,7 @@ import Signin from '@/components/auth/signin';
 import Signup from '@/components/auth/signup';
 import Spinner from '@/components/spinner';
 
-// Child component using useSearchParams
+
 const AuthPageContent = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
