@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const JobViewModal = ({ job, onClose }) => {
     if (!job) return null;
 
@@ -30,13 +31,13 @@ const JobViewModal = ({ job, onClose }) => {
                     <h2 className="text-2xl font-bold text-gray-800">Job Details</h2>
                     <button
                         onClick={onClose}
-                        className="text-red-500 text-sm font-medium hover:underline"
+                        className="text-[#004e89] text-sm font-medium hover:underline"
                     >
                         Close
                     </button>
                 </div>
 
-                <div className="space-y-4 text-sm text-gray-700">
+                <div className="space-y-4 text-sm text-[#004e89]">
                     <div><strong>Title:</strong> {title}</div>
                     <div>
                         <strong>Location:</strong> {Array.isArray(location) ? location.join(', ') : location}
