@@ -80,7 +80,7 @@ export default function TailoredSolutionsSection() {
                                     viewport={{ once: true }}
                                     className="mt-4"
                                 >
-                                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white mb-4 ">
+                                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-[#004e89] text-white mb-4 ">
                                         {service.isComponent ? (
                                             <service.icon size={24} />
                                         ) : (
