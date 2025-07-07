@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link';
 
 const ApplicantHeroSection = () => {
   return (
@@ -9,7 +10,10 @@ const ApplicantHeroSection = () => {
           Complete each section to unlock the next stage and get closer to becoming part of our team.
         </p>
         <button className="bg-[#ff6f3c] hover:bg-[#d8723c] text-white font-semibold py-3 px-8 rounded-lg shadow-lg cursor-pointer  ">
+          <Link href={'/onboarding'} >
+          
           Start Onboarding
+          </Link>
         </button>
       </div>
     </section>
