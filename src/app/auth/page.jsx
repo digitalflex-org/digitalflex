@@ -27,12 +27,12 @@ const AuthPageContent = () => {
   return (
     <div className="max-w-2xl mx-auto">
       {/* Toggle Tabs */}
-      <div className="flex mb-8 border border-blue-600 rounded-lg overflow-hidden">
+      <div className="flex mb-8 border border-[#004e89] rounded-lg overflow-hidden">
         <button
           onClick={() => handleTabChange('signup')}
           className={`w-1/2 py-3 text-lg font-semibold transition-all duration-300 rounded-r-xl ${!showSignIn
-            ? 'bg-blue-600 text-white'
-            : 'bg-white text-blue-600 hover:bg-blue-50'
+            ? 'bg-[#004e89] text-white'
+            : 'bg-white text-[#004e89] hover:bg-blue-50'
             }`}
         >
           Sign Up
@@ -40,8 +40,8 @@ const AuthPageContent = () => {
         <button
           onClick={() => handleTabChange('signin')}
           className={`w-1/2 py-3 text-lg font-semibold transition-all duration-300 rounded-l-xl ${showSignIn
-            ? 'bg-blue-600 text-white'
-            : 'bg-white text-blue-600 hover:bg-blue-50'
+            ? 'bg-[#004e89] text-white'
+            : 'bg-white text-[#004e89] hover:bg-blue-50'
             }`}
         >
           Sign In
