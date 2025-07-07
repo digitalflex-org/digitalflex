@@ -95,7 +95,7 @@ const Signin = () => {
         <div className="py-10 px-4">
             <ToastContainer />
             <div className="w-full max-w-md mx-auto bg-white shadow-lg rounded-xl p-8">
-                <h2 className="text-3xl font-bold text-center text-blue-700 mb-6">Welcome Back</h2>
+                <h2 className="text-3xl font-bold text-center text-[#004e89] mb-6">Welcome Back</h2>
                 <form onSubmit={handleSubmit} className="space-y-5">
                     <div>
                         <label htmlFor="email" className="block font-medium text-gray-700">
@@ -127,7 +127,7 @@ const Signin = () => {
                         />
                     </div>
                     <div>
-                        <p className="mt-6 text-end text-sm text-blue-700">
+                        <p className="mt-6 text-end text-sm text-[#004e89]">
                             <Link href="/forgot-password" className="hover:underline">
                                 Forgot password?
                             </Link>
@@ -138,7 +138,7 @@ const Signin = () => {
                     <button
                         type="submit"
                         disabled={loading}
-                        className={`w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 font-semibold transition-transform duration-200 hover:scale-105 uppercase ${loading ? 'opacity-50 cursor-not-allowed' : ''
+                        className={`w-full bg-[#004e89] text-white py-3 rounded-md hover:bg-blue-700 font-semibold transition-transform duration-200 hover:scale-105 uppercase ${loading ? 'opacity-50 cursor-not-allowed' : ''
                             }`}
                     >
                         {loading ? 'Signing In...' : 'Sign In'}
@@ -147,7 +147,7 @@ const Signin = () => {
 
                 <p className="mt-6 text-center text-sm text-gray-600">
                     Don't have an account?{' '}
-                    <Link href="?tab=signup" className="text-blue-700 font-semibold hover:underline">
+                    <Link href="?tab=signup" className="text-[#004e89]/90 font-semibold hover:underline">
                         Sign up
                     </Link>
                 </p>

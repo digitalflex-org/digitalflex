@@ -2,6 +2,7 @@ import FAQSection from '../../components/services/faq';
 import PaymentSection from '../../components/services/paymentProcess';
 import ElevateYourBrandSection from '../../components/services/valueProp';
 import Image from 'next/image';  // Optional, for images if needed
+import Link from 'next/link';
 
 const services = [
     {
@@ -56,7 +57,9 @@ const ServicesPage = () => {
                     <h3 className='text-4xl font-extrabold mb-4'>Comprehensive Digital Marketing Solutions for Your Business</h3>
                     <p className="text-xl mb-8">We offer tailored solutions to help your business grow online and engage with your audience effectively.</p>
                     <button className="bg-[#ff6f3c] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#f29c11] transition">
+                        <Link href={'/contact'}>
                         Get in Touch
+                        </Link>
                     </button>
                 </div>
             </section>
@@ -92,7 +95,9 @@ const ServicesPage = () => {
                 <h2 className="text-3xl font-bold mb-4">Ready to Start Your Project?</h2>
                 <p className="text-xl mb-8">Let us help you create a compelling digital strategy and elevate your online presence.</p>
                 <button className="bg-[#ff6f3c] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#d87d23] transition">
+                    <Link href={'/contact'}>
                     Contact Us
+                    </Link>
                 </button>
             </section>
 

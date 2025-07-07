@@ -60,7 +60,7 @@ const Signup = () => {
       <ToastContainer />
 
       <div className="w-full max-w-md mx-auto bg-white shadow-lg rounded-xl p-8">
-        <h2 className="text-3xl font-bold text-center text-blue-700 mb-6">Create Your Account</h2>
+        <h2 className="text-3xl font-bold text-center text-[#004e89] mb-6">Create Your Account</h2>
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
             <label htmlFor="email" className="block font-medium text-gray-700">
@@ -110,7 +110,7 @@ const Signup = () => {
 
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 font-semibold transition-transform duration-200 hover:scale-105 uppercase"
+            className="w-full bg-[#004e89] text-white py-3 rounded-md hover:bg-blue-700 font-semibold transition-transform duration-200 hover:scale-105 uppercase"
           >
             Sign Up
           </button>
@@ -118,7 +118,7 @@ const Signup = () => {
 
         <p className="mt-6 text-center text-sm text-gray-600">
           Already have an account?{' '}
-          <Link href="?tab=signin" className="text-blue-700 font-semibold hover:underline">
+          <Link href="?tab=signin" className="text-[#004e89]/90 font-semibold hover:underline">
             Sign in
           </Link>
         </p>
